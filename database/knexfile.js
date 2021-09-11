@@ -34,6 +34,7 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME
     },
+    ssl: { ca:fs.readFileSync(`${__dirname}/../config/cert.crt`)},
     pool: {
       min: parseInt(process.env.DB_POOL_MIN), 
       max: parseInt(process.env.DB_POOL_MAX),
@@ -44,7 +45,7 @@ module.exports = {
       createRetryIntervalMillis: 100,
       propagateCreateError: false
     },
-    migrations: {directory: './migrations', tableName: 'migrations'},
+    migrations: {directory: './migrations',tableName: 'migrations'},
     seeds:{directory: './seeds'}
   },
   production: {
@@ -56,16 +57,8 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME
     },
-    pool: {
-      min: parseInt(process.env.DB_POOL_MIN), 
-      max: parseInt(process.env.DB_POOL_MAX),
-      createTimeoutMillis: 3000,
-      acquireTimeoutMillis: 30000,
-      idleTimeoutMillis: 30000,
-      reapIntervalMillis: 1000,
-      createRetryIntervalMillis: 100,
-      propagateCreateError: false
-    },
-    migrations: {directory: './migrations', tableName: 'migrations'}
-  },
+    ssl: { ca:fs.readFileSync(`${__dirname}/../config/cert.crt`)},
+    pool: {min: parseInt(process.env.DB_POOL_MIN), max: parseInt(process.env.DB_POOL_MAX)},
+    migrations: { directory: './migrations', tableName: 'migrations'}
+  }
 };

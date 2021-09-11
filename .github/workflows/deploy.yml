@@ -1,0 +1,32 @@
+name: Deploy Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-production:
+    name: Deploy to nodejs test server
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/test-dev'
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Deployment
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_DEV_IP }}
+        key: ${{ secrets.SSH_DEV_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_DEV_PORT }}
+        username: ${{ secrets.SSH_DEV_USERNAME }}
+        script: |
+          cd ~/apps/nodejstest
+          eval `ssh-agent -s`
+          ssh-add /home/ayodeji/.ssh/github
+          git pull
+          cd ~/apps/nodejstest/database
+          knex migrate:latest
+          cd ~/apps/nodejstest
+          npm install
+          npm run start:staging

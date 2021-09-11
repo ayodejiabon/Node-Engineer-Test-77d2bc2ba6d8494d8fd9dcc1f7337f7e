@@ -3,7 +3,7 @@ module.exports = {
         {
             name: "nodejs-test-app",
             script: "./server.js",
-            instances  : 3,
+            instances  : 1,
             error_file: './errors/err.log',
             out_file: './errors/out.log',
             log_file: './errors/combined.log',
