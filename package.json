@@ -1,0 +1,47 @@
+{
+  "name": "Node-Engineer-Test-77d2bc2ba6d8494d8fd9dcc1f7337f7e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:prod": "set NODE_ENV=production && pm2 reload ecosystem.config.js --env production",
+    "start:dev": "nodemon server.js",
+    "keys:gen": "node keygen.js",
+    "start:staging": "pm2 reload ecosystem.config.js --env staging"
+  },
+  "keywords": [],
+  "author": "Abon Ayodeji",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "express-validator": "^6.11.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "html-entities": "^2.3.2",
+    "html-to-text": "^7.1.1",
+    "pug": "^3.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.6",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "objection": "^2.2.15",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "paystack-node": "^0.3.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.7"
+  }
+}
