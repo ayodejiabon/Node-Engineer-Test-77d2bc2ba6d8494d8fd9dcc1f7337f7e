@@ -15,6 +15,7 @@ exports.validateAccount = [
                 return;
             }
         } catch (err) {
+            console.log(err);
             return Promise.reject('Unable to perform request');
         }
     }),
